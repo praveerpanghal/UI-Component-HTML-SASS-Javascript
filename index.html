@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+</head>
+<body>
+
+<!-- Open The Modal -->
+<center>
+<div class="pointer-modal">
+<span id="modalButton" class="pointer">Click here </span>
+<span>to submit details</span>
+</div>
+</center>
+
+<!-- The Modal -->
+<div id="modalContainer" class="modal">
+  <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Register Form</h3>
+        <div class="modal-body">
+            <div class="control">
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+            </div>
+            <div class="control">
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required/>
+            </div>
+            <div class="control">
+                <input type="email" id="email" name="email" placeholder="Email" required />
+            </div>
+            <div class="control">
+                <button onclick="detailsSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="result">
+    
+</div>
+
+<script>
+
+</script>
+<script src="script/main.js"></script>
+</body>
+</html>

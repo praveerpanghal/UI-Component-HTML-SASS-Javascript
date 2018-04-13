@@ -1,0 +1,109 @@
+$em-base: 16px !default;
+$max-size:100%;
+$half-size:50%;
+$color-red:red;
+$color-black: #000;
+$color-white:#fefefe;
+$color-grey:#888;
+$color-blue:blue;
+$auto-property:auto;
+
+$body-font-family:Arial, Helvetica, sans-serif;
+// It strips the unit of measure and returns it
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+  }
+  
+  // Converts "px" to "em" using the ($)em-base
+  @function convert-to-em($value, $base-value: $em-base)  {
+    $value: strip-unit($value) / strip-unit($base-value) * 1em;
+    @if ($value == 0em) { $value: 0; } // Turn 0em into 0
+    @return $value;
+  }
+
+// Just enter the number, no need to mention "px"
+@function em-calc($values, $base-value: $em-base) {
+    $max: length($values); // Get the total number of parameters passed
+  
+    // If there is only 1 parameter, then return it as an integer.
+    // This is done because a list can't be multiplied or divided even if it contains a single value
+    @if $max == 1 { @return convert-to-em(nth($values, 1), $base-value); }
+  
+    $emValues: (); // This will eventually store the converted $values in a list
+    @for $i from 1 through $max {
+      $emValues: append($emValues, convert-to-em(nth($values, $i), $base-value));
+    }
+    @return $emValues;
+  }
+
+
+.close {
+    color: $color-red;
+    float: right;
+    font-size: em-calc(28);
+    font-weight: bold;
+}
+
+input {
+    height: em-calc(25);
+    width: $half-size;
+    padding-left: em-calc(5);
+}
+
+
+.control {
+    padding: em-calc(5);
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: em-calc(100); 
+    left: 0;
+    top: 0;
+    width: $max-size;
+    height: $max-size; 
+    overflow: $auto-property; 
+    background-color: $color-grey; 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: $color-white;
+    margin: $auto-property;
+    padding: em-calc(20);
+    border: 1px solid $color-grey;
+    width: 80%;
+    text-align: center;
+}
+
+/* Modal Body */
+.modal-body {
+    background-color: $color-white;
+    margin: $auto-property;
+    padding: em-calc(20);
+    width: 80%;
+}
+
+body {
+    font-family: $body-font-family;
+}
+
+.close:hover,
+.close:focus {
+    color: $color-black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pointer {
+    cursor:pointer;
+    color: $color-blue;
+}
+.pointer-modal {
+   // margin-left: $half-size;
+    margin-top: 2%;
+}
